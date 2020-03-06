@@ -1,0 +1,2 @@
+cabins:10
+rate:50
