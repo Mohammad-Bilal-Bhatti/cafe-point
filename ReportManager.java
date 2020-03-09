@@ -121,7 +121,7 @@ class ReportManager
 	private void addReportsToDLM(){
 		dlm=new DefaultListModel();
 		
-		File file=new File("Daily Reports\\");
+		File file=new File(MyDataBase.dir+"\\");
 		File[] report_files=file.listFiles();
 		for(int i=0;i<report_files.length;i++)
 			dlm.addElement(report_files[i]);

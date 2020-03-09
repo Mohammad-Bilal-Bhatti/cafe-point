@@ -2,26 +2,15 @@ import java.io.*;
 import java.util.Calendar;
 class MyDataBase
 {
+	public static final String dir = "reports";
 	File file;
 	Calendar calendar;
 	
 	//When the object of the myDataBase will be Created the constructor of the current class will be called...
 	//And it will do its work written below...
 	//This will Checks it only once when its object is created only...
-	
-	
-	MyDataBase()	//This Constructor will check either the file with current date exists or Not...
-	{					//If file doesn't exist then it will create a new File with current Date...
-		String path=("Daily Reports\\"+getDate()+".txt");
-		try{
-			file=new File(path);
-			if(! file.exists()){
-				file.createNewFile();
-			}
-		}catch(IOException e){
-			System.out.println(e.getMessage());
-		}
-	}
+
+
 	private String getDate(){			//This will return the Current Date...in Format(DD-MM-YYYY)
 		calendar=Calendar.getInstance();
 		int day=calendar.get(Calendar.DAY_OF_MONTH);
@@ -33,6 +22,32 @@ class MyDataBase
 		return date;
 	}
 	
+	// Instance Initilization Block
+	{
+		// Checks if the directory exists or not?
+		File d = new File(this.dir);
+		if(!d.exists()){ // If not exists...
+			d.mkdir(); // Make that directory
+		}
+	}
+
+	
+	MyDataBase()	//This Constructor will check either the file with current date exists or Not...
+	{					//If file doesn't exist then it will create a new File with current Date...
+		
+		String path=(dir+"\\"+getDate()+".data");
+		try{
+			file=new File(path);
+			if(! file.exists()){
+				file.createNewFile();
+			}
+		}catch(IOException e){
+			System.out.println(e.getMessage());
+		}
+	}
+
+
+
 	
 	//This method Will Append in a File using fileoutputStream and file Writer.
 	//FileOutputStream will open the file in append mode and
